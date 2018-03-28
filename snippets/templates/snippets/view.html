@@ -1,3 +1,14 @@
 <p> key {{ key }} </p>
 <p> title {{ title }} </p>
 <p> {{ content }} </p>
+<p>  Comments: </p>
+
+<form action = "{% url 'view' key %}" method = "post">
+   {% csrf_token %}
+   {{ form.as_p }}
+<input type = "submit" value = "comment">
+
+{% for c in comments %}
+<p> {{ c.content }} &nbsp; {{ c.datetime_created }}</p>
+{% endfor %}
+</form>
